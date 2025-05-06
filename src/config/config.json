@@ -42,11 +42,11 @@
   },
 
   "shopify": {
-    "currencySymbol": "৳",
-    "currencyCode": "BDT",
+    "currencySymbol": "$",
+    "currencyCode": "USD",
     "collections": {
-      "hero_slider": "hidden-homepage-carousel",
-      "featured_products": "featured-products"
+      "hero_slider": "Arabic",
+      "featured_products": "product-gird-1"
     }
   }
 }

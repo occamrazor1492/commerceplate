@@ -9,6 +9,7 @@ import { getListPage } from "@/lib/contentParser";
 import { getCollectionProducts, getCollections } from "@/lib/shopify";
 import CallToAction from "@/partials/CallToAction";
 import FeaturedProducts from "@/partials/FeaturedProducts";
+import ProductGridSection from "@/partials/ProductGridSection";
 import SeoMeta from "@/partials/SeoMeta";
 import { Suspense } from "react";
 
@@ -32,7 +33,8 @@ const ShowFeaturedProducts = async () => {
     collection: collections.featured_products,
     reverse: false,
   });
-  return <FeaturedProducts products={products} />;
+  // u9650u5236u663eu793au4ea7u54c1u6570u91cfu4e3a15u4e2a
+  return <FeaturedProducts products={products.slice(0, 15)} />;
 };
 
 const Home = () => {
@@ -75,6 +77,12 @@ const Home = () => {
           </Suspense>
         </div>
       </section>
+
+      {/* Product Grid section */}
+      <ProductGridSection title="Shop Our Collection" collectionHandle="hero_slider" maxProducts={24} />
+
+      {/* Second Product Grid section */}
+      <ProductGridSection title="Featured Items" collectionHandle="featured_products" maxProducts={15} />
 
       <CallToAction data={callToAction} />
     </>

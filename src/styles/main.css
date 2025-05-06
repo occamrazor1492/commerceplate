@@ -19,6 +19,13 @@
   @import "./buttons.css";
 }
 
+/* 自定义产品网格样式 */
+@layer utilities {
+  .col-1\/5 {
+    width: 20%;
+  }
+}
+
 .iiz__hint {
   @apply rounded-md;
 }

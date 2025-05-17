@@ -401,6 +401,21 @@ export async function getCollections(): Promise<Collection[]> {
   return collections;
 }
 
+export async function getSpecificCollections(handles: string[]): Promise<Collection[]> {
+  const res = await shopifyFetch<ShopifyCollectionsOperation>({
+    query: getCollectionsQuery,
+    tags: [TAGS.collections],
+  });
+  const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
+  
+  // Filter collections by the specified handles
+  const collections = reshapeCollections(shopifyCollections).filter(
+    (collection) => handles.includes(collection.handle)
+  );
+
+  return collections;
+}
+
 export async function getMenu(handle: string): Promise<Menu[]> {
   const res = await shopifyFetch<ShopifyMenuOperation>({
     query: getMenuQuery,

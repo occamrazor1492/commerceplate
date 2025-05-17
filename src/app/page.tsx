@@ -6,7 +6,7 @@ import SkeletonCategory from "@/components/loadings/skeleton/SkeletonCategory";
 import SkeletonFeaturedProducts from "@/components/loadings/skeleton/SkeletonFeaturedProducts";
 import config from "@/config/config.json";
 import { getListPage } from "@/lib/contentParser";
-import { getCollectionProducts, getCollections } from "@/lib/shopify";
+import { getCollectionProducts, getSpecificCollections } from "@/lib/shopify";
 import CallToAction from "@/partials/CallToAction";
 import FeaturedProducts from "@/partials/FeaturedProducts";
 import ProductGridSection from "@/partials/ProductGridSection";
@@ -24,8 +24,10 @@ const ShowHeroSlider = async () => {
 };
 
 const ShowCollections = async () => {
-  const collections = await getCollections();
-  return <CollectionsSlider collections={collections} />;
+  // Use collection handles from config or default to empty array if not defined
+  const homepageCollectionHandles = collections.homepage_collections || [];
+  const homepageCollections = await getSpecificCollections(homepageCollectionHandles);
+  return <CollectionsSlider collections={homepageCollections} />;
 };
 
 const ShowFeaturedProducts = async () => {

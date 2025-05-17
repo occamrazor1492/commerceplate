@@ -46,7 +46,8 @@
     "currencyCode": "USD",
     "collections": {
       "hero_slider": "Arabic",
-      "featured_products": "product-gird-1"
+      "featured_products": "product-gird-1",
+      "homepage_collections": ["sticker"]
     }
   }
 }

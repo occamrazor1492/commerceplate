@@ -168,21 +168,53 @@ npm run build
 
 ### 👉 Cloudflare Workers
 
-This project can be built for Cloudflare Workers with OpenNext.
+This project can be built for Cloudflare Workers with OpenNext. The Worker build uses the Next.js Node.js runtime through `@opennextjs/cloudflare`, so do not add `export const runtime = "edge"` to app routes.
 
 ```bash
 npm run build:cf
 npm run preview:cf
 ```
 
-For local Worker previews, copy `.dev.vars.example` to `.dev.vars` and add the Shopify credentials from `.env.example`. Deploying to Cloudflare requires an authenticated Wrangler session:
+For local Worker previews, copy `.dev.vars.example` to `.dev.vars` and add the Shopify credentials from `.env.example`. The minimum storefront variables are:
+
+```bash
+SHOPIFY_STORE_DOMAIN="your-store.myshopify.com"
+SHOPIFY_STOREFRONT_PRIVATE_ACCESS_TOKEN="your-private-access-token"
+```
+
+Deploying to Cloudflare requires an authenticated Wrangler session:
 
 ```bash
 npx wrangler whoami
 npm run deploy:cf
 ```
 
-The default `wrangler.jsonc` enables the Cloudflare Images binding for Next.js image optimization. Cloudflare Images may require account setup and can incur platform charges.
+The default `wrangler.jsonc` points to `.open-next/worker.js`, serves static assets from `.open-next/assets`, enables `nodejs_compat`, and includes the Cloudflare Images binding for Next.js image optimization. Cloudflare Images may require account setup and can incur platform charges.
+
+#### Cloudflare Workers（中文）
+
+本项目可以通过 OpenNext 构建并部署到 Cloudflare Workers。当前配置使用 `@opennextjs/cloudflare` 的 Next.js Node.js runtime，因此不要在 app routes 里添加 `export const runtime = "edge"`。
+
+```bash
+npm run build:cf
+npm run preview:cf
+```
+
+本地预览 Worker 时，复制 `.dev.vars.example` 为 `.dev.vars`，然后填入 `.env.example` 中对应的 Shopify 环境变量。最少需要：
+
+```bash
+SHOPIFY_STORE_DOMAIN="your-store.myshopify.com"
+SHOPIFY_STOREFRONT_PRIVATE_ACCESS_TOKEN="your-private-access-token"
+```
+
+部署到 Cloudflare 前，需要先登录 Wrangler：
+
+```bash
+npx wrangler whoami
+npm run deploy:cf
+```
+
+默认的 `wrangler.jsonc` 会使用 `.open-next/worker.js` 作为 Worker 入口，从 `.open-next/assets` 提供静态资源，启用 `nodejs_compat`，并为 Next.js 图片优化配置 Cloudflare Images 绑定。Cloudflare Images 可能需要在账号中启用，并可能产生平台费用。
 
 <!-- reporting issue -->
 

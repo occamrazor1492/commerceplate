@@ -2,3 +2,5 @@ NEXTJS_ENV=development
 
 # Copy this file to .dev.vars for local Cloudflare Worker previews.
 # Add the Shopify values from .env.example when previewing real storefront data.
+# 中文：本地预览 Cloudflare Worker 时，复制本文件为 .dev.vars。
+# 中文：如需预览真实店铺数据，请补充 .env.example 中的 Shopify 环境变量。

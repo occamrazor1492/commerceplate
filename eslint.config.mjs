@@ -3,6 +3,11 @@ import nextTs from "eslint-config-next/typescript";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 const eslintConfig = defineConfig([
+  {
+    linterOptions: {
+      reportUnusedDisableDirectives: "off",
+    },
+  },
   ...nextVitals,
   ...nextTs,
   {
@@ -25,6 +30,8 @@ const eslintConfig = defineConfig([
 
       // React
       "react-hooks/exhaustive-deps": "error",
+      "react-hooks/immutability": "off",
+      "react-hooks/set-state-in-effect": "off",
     },
   },
   // Override default ignores of eslint-config-next

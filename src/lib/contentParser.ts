@@ -3,7 +3,15 @@ import matter from "gray-matter";
 import { notFound } from "next/navigation";
 import path from "path";
 
-const contentPath = "src/content";
+const contentPathCandidates = [
+  path.join(process.cwd(), "src", "content"),
+  "/bundle/src/content",
+];
+
+export const resolveContentPath = (userAgent = globalThis.navigator?.userAgent) =>
+  userAgent === "Cloudflare-Workers"
+    ? contentPathCandidates[1]
+    : contentPathCandidates[0];
 
 // Helper function to read file content
 const readFile = (filePath: string) => {
@@ -18,6 +26,7 @@ const parseFrontmatter = (frontmatter: any) => {
 
 // get list page data, ex: _index.md
 export const getListPage = (filePath: string) => {
+  const contentPath = resolveContentPath();
   const pageDataPath = path.join(contentPath, filePath);
 
   if (!fs.existsSync(pageDataPath)) {
@@ -40,6 +49,7 @@ export const getListPage = (filePath: string) => {
 
 // get all single pages, ex: blog/post.md
 export const getSinglePage = (folder: string) => {
+  const contentPath = resolveContentPath();
   const folderPath = path.join(contentPath, folder);
 
   if (!fs.existsSync(folderPath) || !fs.lstatSync(folderPath).isDirectory()) {

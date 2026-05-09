@@ -13,6 +13,7 @@ package-lock.json
 
 # next.js
 /.next/
+/.open-next/
 /out/
 
 # production
@@ -30,9 +31,13 @@ yarn-error.log*
 # local env files
 .env
 .env*.local
+.dev.vars
 
 # vercel
 .vercel
+
+# cloudflare
+/.wrangler/
 
 # typescript
 *.tsbuildinfo

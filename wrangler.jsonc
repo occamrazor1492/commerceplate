@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "commerceplate",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-05-08",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "find_additional_modules": true,
+  "base_dir": ".open-next/server-functions/default",
+  "rules": [
+    {
+      "type": "Text",
+      "globs": ["src/content/**/*.md", "src/config/**/*.json"],
+      "fallthrough": true
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "commerceplate"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

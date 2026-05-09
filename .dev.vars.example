@@ -1,0 +1,4 @@
+NEXTJS_ENV=development
+
+# Copy this file to .dev.vars for local Cloudflare Worker previews.
+# Add the Shopify values from .env.example when previewing real storefront data.

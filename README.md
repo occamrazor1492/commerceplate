@@ -166,6 +166,24 @@ npm run dev
 npm run build
 ```
 
+### 👉 Cloudflare Workers
+
+This project can be built for Cloudflare Workers with OpenNext.
+
+```bash
+npm run build:cf
+npm run preview:cf
+```
+
+For local Worker previews, copy `.dev.vars.example` to `.dev.vars` and add the Shopify credentials from `.env.example`. Deploying to Cloudflare requires an authenticated Wrangler session:
+
+```bash
+npx wrangler whoami
+npm run deploy:cf
+```
+
+The default `wrangler.jsonc` enables the Cloudflare Images binding for Next.js image optimization. Cloudflare Images may require account setup and can incur platform charges.
+
 <!-- reporting issue -->
 
 ## 🐞 Reporting Issues
